@@ -1,0 +1,6 @@
+CAS Addon YAML Service Registry Changelog
+==============================================
+
+Changes in version 1.0.0-GA
+---------------------------------------------
+* Initial release

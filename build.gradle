@@ -1,0 +1,112 @@
+apply plugin: 'groovy'
+apply plugin: 'maven'
+apply plugin: 'signing'
+apply from: 'http://tellurianring.com/projects/gradle-plugins/gradle-release/apply.groovy'
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+buildscript {
+    repositories {
+        maven { url 'http://repo.spring.io/plugins-release' }
+    }
+    dependencies {
+        classpath 'org.springframework.build.gradle:propdeps-plugin:0.0.7'
+    }
+}
+
+configure(allprojects) {
+    apply plugin: 'propdeps'
+    apply plugin: 'propdeps-maven'
+    apply plugin: 'propdeps-idea'
+    apply plugin: 'propdeps-eclipse'
+}
+
+repositories {
+    jcenter()
+    //TODO: only useful for development. Remove for the GA release?
+    mavenLocal()
+}
+
+dependencies {
+    provided "org.jasig.cas:cas-server-core:$casVersion"
+    provided "org.springframework:spring-context:$springVersion"
+    compile "org.yaml:snakeyaml:$snakeYamlVersion"
+    compile "net.xrrocha:yamltag:$yamlTagVersion"
+    compile "net.unicon.cas:cas-addon-external-config-services-registry-support:$casAddonExternalConfigServicesRegistrySupportVersion"
+    compile "net.unicon.cas:cas-addon-registered-services-commons:$casAddonRegisteredServicesCommonsVersion"
+    testCompile "org.codehaus.groovy:groovy-all:$groovyVersion"
+    testCompile "org.spockframework:spock-core:$spockVersion"
+    testCompile "org.springframework:spring-test:$springVersion"
+    testCompile "junit:junit:$junitVersion"
+}
+
+javadoc {
+    classpath = configurations.compile + configurations.provided
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = "javadoc"
+    from 'build/docs/javadoc'
+}
+
+task sourcesJar(type: Jar) {
+    from sourceSets.main.allSource
+    classifier = "sources"
+}
+
+artifacts {
+    archives jar
+    archives javadocJar
+    archives sourcesJar
+}
+
+signing {
+    required { gradle.taskGraph.hasTask("uploadArchives") }
+    sign configurations.archives
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.2'
+}
+
+
+createReleaseTag.dependsOn uploadArchives
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+            repository(url: 'https://api.bintray.com/maven/uniconiam/maven/cas-addon-yaml-services-registry') {
+                authentication(userName: bintrayUsername, password: bintrayAPIKey)
+            }
+            pom.project {
+                name 'CAS addon YAML Services Registry'
+                packaging 'jar'
+                description 'An Apereo CAS addon implementation of YAML Services Registry.'
+                url 'https://github.com/unicon-cas-addons/cas-addon-yaml-services-registry'
+
+                scm {
+                    url 'scm:git@github.com:unicon-cas-addons/cas-addon-yaml-services-registry.git'
+                    connection 'scm:git@github.com:unicon-cas-addons/cas-addon-yaml-services-registry.git'
+                    developerConnection 'scm:git@github.com:unicon-cas-addons/cas-addon-yaml-services-registry.git'
+                }
+
+                licenses {
+                    license {
+                        name 'The Apache Software License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                        distribution 'repo'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id 'dima767'
+                        name 'Dmitriy Kopylenko'
+                    }
+                }
+            }
+        }
+    }
+}
