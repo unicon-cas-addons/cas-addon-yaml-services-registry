@@ -1,0 +1,6 @@
+---
+  services
+    - !serviceWithAttributes_XX
+        garbage: XX
+
+    

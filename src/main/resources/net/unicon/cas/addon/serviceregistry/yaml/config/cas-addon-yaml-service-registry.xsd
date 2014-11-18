@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema attributeFormDefault="unqualified"
+            elementFormDefault="qualified"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://unicon.net/schema/cas/yaml-service-registry"
+            xmlns="http://unicon.net/schema/cas/yaml-service-registry">
+
+    <xsd:element name="yaml-services-registry" type="yaml-services-registryType"/>
+    <xsd:complexType name="yaml-services-registryType">
+        <xsd:attribute type="xsd:string" name="config-file" default="${service.registry.config.location:file:/etc/cas/servicesRegistry.yml}"/>
+    </xsd:complexType>
+
+</xsd:schema>
+

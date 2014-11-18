@@ -1,0 +1,14 @@
+net.unicon.cas.addon.registeredservices.DefaultRegisteredServiceWithAttributes:
+  tagName: serviceWithAttributes
+
+net.unicon.cas.addon.registeredservices.RegexRegisteredServiceWithAttributes:
+  tagName: regexServiceWithAttributes  
+
+org.jasig.cas.services.support.RegisteredServiceDefaultAttributeFilter:
+  tagName: defaultAttributeFilter
+
+org.jasig.cas.services.support.RegisteredServiceRegexAttributeFilter:
+  tagName: regexAttributeFilter
+
+
+

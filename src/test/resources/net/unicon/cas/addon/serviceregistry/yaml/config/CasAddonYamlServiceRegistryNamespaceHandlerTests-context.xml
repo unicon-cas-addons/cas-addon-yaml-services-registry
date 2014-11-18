@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:cas-external="http://unicon.net/schema/cas/yaml-service-registry"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://unicon.net/schema/cas/yaml-service-registry
+                           http://unicon.net/schema/cas/cas-addon-yaml-service-registry.xsd">
+
+
+    <cas-external:yaml-services-registry config-file="classpath:/net/unicon/cas/addon/serviceregistry/yaml/servicesRegistry.yml"/>
+
+    <bean id="servicesManager" class="org.jasig.cas.services.DefaultServicesManagerImpl">
+        <constructor-arg index="0" ref="serviceRegistryDao"/>
+    </bean>
+
+</beans>
