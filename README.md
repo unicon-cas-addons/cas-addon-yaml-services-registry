@@ -9,7 +9,7 @@ YAML configuration format for defining rich CAS' `RegisteredService` collection 
 This library replaces `cas-addons 1.x` JSON ServiceRegistry and serves as an alternative to the new [JSON Service Registry](http://jasig.github.io/cas/development/installation/Service-Management.html#persisting-registered-service-data) which will be available in CAS core version 4.1 which is not yet released.
 
 ## Current version
-`1.0.0-RC1`
+`1.0.0-GA`
 
 ## Supported CAS version
 The minimum supported CAS server version is `4.0.0`
