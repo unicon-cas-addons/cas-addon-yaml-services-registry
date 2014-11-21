@@ -27,6 +27,7 @@ The minimum supported CAS server version is `4.0.0`
   </dependency>
   ```
 * ###Define registered services
+  
   Create a file `/etc/cas/servicesRegistry.yml` with services definitions. Example services definitions would look like this:
 
 ```yaml
@@ -90,6 +91,7 @@ The minimum supported CAS server version is `4.0.0`
   in the brakets.
 
 * ###Define beans
+  
   Make sure do delete an existing `serviceRegistryDao` and define the following beans (in `WEB-INF/spring-configuration/serviceRegistry.xml` for example):
 
 ```xml
