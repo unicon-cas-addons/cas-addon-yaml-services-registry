@@ -71,9 +71,9 @@ The minimum supported CAS server version is `4.0.0`
         requiredHandlers: [handler1, handler2]
 ```
 
-  This is YAML format as implemented by SnakeYAML and YAMLTag libraries. Each registered services is represented as a new record within a document
-  and indicated by special yaml tag that is mapped internally to a class type of CAS objects that gets instantiated at runtime and collected
-  in to a List. Every property defined here (basic or tag representing object type) directly map to a property on the
+  This is YAML format as implemented by SnakeYAML and YAMLTag libraries. Each registered service is represented as a new record within a document
+  and indicated by special yaml tag that is mapped internally to a class type of CAS object that gets instantiated at runtime and collected
+  into a List. Every property defined here (basic or tag representing object type) directly map to a property on the
   `RegisteredService` type that is being instantiated. Here are the current object tags and their mappings:
 
   ```yaml
@@ -86,13 +86,13 @@ The minimum supported CAS server version is `4.0.0`
       !regexAttributeFilter - maps to org.jasig.cas.services.support.RegisteredServiceRegexAttributeFilter
   ```
 
-  This example `!defaultAttributeFilter []` instantiates mapped object with the default, no-arg constructor, whereas this one
-  `!regexAttributeFilter ["https://.+"]` instantiates a corresponding objects with one argument constrcutor with the value of the argument
+  This example: `!defaultAttributeFilter []` instantiates mapped object with the default, no-arg constructor, whereas this one:
+  `!regexAttributeFilter ["https://.+"]` instantiates a corresponding object with one argument constrcutor with the value of the argument
   in the brakets.
 
 * ###Define beans
   
-  Make sure do delete an existing `serviceRegistryDao` and define the following beans (in `WEB-INF/spring-configuration/serviceRegistry.xml` for example):
+  Make sure to delete an existing `serviceRegistryDao` bean definition and define the following beans (in `WEB-INF/spring-configuration/serviceRegistry.xml` for example):
 
 ```xml
   <?xml version="1.0" encoding="UTF-8"?>
