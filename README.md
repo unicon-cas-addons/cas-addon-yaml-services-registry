@@ -127,7 +127,7 @@ The minimum supported CAS server version is `4.0.0`
     </beans>
 ```
 
-  Bare `<cas-external:yaml-services-registry/>` definition assumes the yaml configuration file is `/etc/cas/servicesRegistry.yml` by deafault.
+  Bare `<cas-external:yaml-services-registry/>` definition assumes the yaml configuration file is `/etc/cas/servicesRegistry.yml` by default.
   This could be changed (if such a need arises) by introducing an additional `config-file` attribute like so:
 
   ```xml
