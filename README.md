@@ -1,6 +1,9 @@
 cas-addon-yaml-services-registry
 ================================
 
+> This project was developed as part of Unicon's [Open Source Support program](https://unicon.net/opensource).
+Professional Support / Integration Assistance for this module is available. For more information [visit](https://unicon.net/opensource/cas).
+
 CAS service registry implementation that uses YAML configuration format.
 
 This library is built on top of [SnakeYAML](https://code.google.com/p/snakeyaml/) and [YAMLTag](https://github.com/xrrocha/yamltag) libraries to create flexible and human-readable
