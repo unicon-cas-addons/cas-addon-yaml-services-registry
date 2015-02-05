@@ -37,41 +37,41 @@ The minimum supported CAS server version is `4.0.0`
 ---
   services:
     - !serviceWithAttributes
-    id: 1
-    name: ONE
-    description: Google service
-    serviceId: https://www.google.com/**
-    evaluationOrder: 1
-    theme: default
-    enabled: false
-    ssoEnabled: false
-    anonymousAccess: true
-    allowedToProxy: false
-    allowedAttributes: [uid, mail]
-    ignoreAttributes: false
-    usernameAttribute: cn
-    logoutType: FRONT_CHANNEL
-    extraAttributes:
-      authzAttributes:
-        memberOf: [group1, group2]
-        anotherAttr: val
+      id: 1
+      name: ONE
+      description: Google service
+      serviceId: https://www.google.com/**
+      evaluationOrder: 1
+      theme: default
+      enabled: false
+      ssoEnabled: false
+      anonymousAccess: true
+      allowedToProxy: false
+      allowedAttributes: [uid, mail]
+      ignoreAttributes: false
+      usernameAttribute: cn
+      logoutType: FRONT_CHANNEL
+      extraAttributes:
+        authzAttributes:
+          memberOf: [group1, group2]
+          anotherAttr: val
         unauthorizedUrl: http://exammple.com
 
 
-        - !serviceWithAttributes
-        id: 2
-        name: TWO
-        serviceId: https://yahoo.com
-        evaluationOrder: 2
-        attributeFilter: !regexAttributeFilter ["https://.+"]
+    - !serviceWithAttributes
+      id: 2
+      name: TWO
+      serviceId: https://yahoo.com
+      evaluationOrder: 2
+      attributeFilter: !regexAttributeFilter ["https://.+"]
 
-        - !regexServiceWithAttributes
-        id: 3
-        name: THREE
-        serviceId: ^(https?|imaps?)://.*
-        evaluationOrder: 3
-        attributeFilter: !defaultAttributeFilter []
-        requiredHandlers: [handler1, handler2]
+    - !regexServiceWithAttributes
+      id: 3
+      name: THREE
+      serviceId: ^(https?|imaps?)://.*
+      evaluationOrder: 3
+      attributeFilter: !defaultAttributeFilter []
+      requiredHandlers: [handler1, handler2]
 ```
 
   This is YAML format as implemented by SnakeYAML and YAMLTag libraries. Each registered service is represented as a new record within a document
